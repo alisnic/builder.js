@@ -1,13 +1,6 @@
 ;(function (exports, doc) {
   "use strict"
 
-  var escapeString = function (string) {
-    return string.replace(/&/g, '&amp;')
-                 .replace(/</g, '&lt;')
-                 .replace(/>/g, '&gt;')
-                 .replace(/"/g, '&quot;');
-  };
-
   var Tag = function (name, attrs, body) {
     this.el = doc.createElement(name);
     var attributes = {};
