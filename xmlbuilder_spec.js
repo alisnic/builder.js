@@ -13,9 +13,9 @@ describe('XMLBuilder', function () {
                  '<foo foo="bar"></foo>')
   })
 
-  xit('escapes attribute values', function () {
-    assert.equal(XMLBuilder.t('foo', {foo: "bar&<>\"'"}).toString(),
-                 '<foo foo="bar&amp;&lt;&gt;&quot;&apos;"></foo>')
+  it('escapes attribute values', function () {
+    assert.equal(XMLBuilder.t('foo', {foo: "bar&<>\""}).toString(),
+                 '<foo foo="bar&amp;&lt;&gt;&quot;"></foo>')
   })
 
   it('can have a body', function () {
