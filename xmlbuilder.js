@@ -26,14 +26,14 @@
     }
 
     if (typeof body === "function") {
-      this.el.appendChild(body(this));
+      body(this);
     } else {
       this.el.textContent = body || "";
     }
   };
 
   Tag.prototype.t = function (name, attrs, body) {
-    return new Tag(name, attrs, body);
+    this.el.appendChild(new Tag(name, attrs, body).toDom());
   };
 
   Tag.prototype.toString = function () {
