@@ -1,7 +1,7 @@
 xmlbuilder.js
 =============
 
-XML Builder is a small library to build XML. It uses the DOM to do that, hence the size.
+XML Builder is a small library to build XML/HTML. It uses the DOM to do that, hence the size.
 It's inspired by the Nokogiri XML builder.
 
 ```coffee
