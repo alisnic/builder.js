@@ -1,5 +1,5 @@
 min:
-	uglifyjs xmlbuilder.js > xmlbuilder.min.js --mangle
+	uglifyjs builder.js > builder.min.js --mangle
 
 spec:
-	node xmlbuilder_spec.js
+	node builder_spec.js

@@ -1,8 +1,11 @@
 ;(function (exports, doc) {
   "use strict"
+  var HTML_TAGS = ['p', 'div', 'head', 'html', 'img', 'script']
 
   var Tag = function (name, attrs, body) {
     this.el = doc.createElement(name);
+    this.depth = 0;
+
     var attributes = {};
 
     if (typeof attrs === "object") {
@@ -18,13 +21,19 @@
     }
 
     if (typeof body === "function") {
-      body(this);
+      body.apply(this, [this]);
     } else {
       this.el.textContent = body || "";
     }
   };
 
-  Tag.prototype.t = function (name, attrs, body) {
+  for (var tag in HTML_TAGS) {
+    Tag.prototype[tag] = function (attrs, body) {
+      return this.tag(tag, attrs, body);
+    }
+  }
+
+  Tag.prototype.tag = function (name, attrs, body) {
     this.el.appendChild(new Tag(name, attrs, body).toDom());
   };
 
@@ -36,10 +45,8 @@
     return this.el;
   };
 
-  exports.XMLBuilder = {
-    t: function (name, attrs, body) {
-      return new Tag(name, attrs, body);
-    }
+  exports.Builder = function (name, attrs, body) {
+    return new Tag(name, attrs, body);
   }
 
 })(typeof exports === "undefined" ? window : exports,
