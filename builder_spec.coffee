@@ -25,4 +25,15 @@ describe "Builder", ->
 
     assert.equal xml.toString(), "<foo><bar>1</bar><bar>2</bar></foo>"
 
+  it "works well as a templating language", ->
+    renderTodos = (list)->
+      el = Builder 'ul', ->
+        for item in list
+          @li item.name
+
+      el.toString()
+
+    expected = "<ul><li>first</li><li>second</li></ul>"
+    assert.equal renderTodos([{name: 'first'}, {name: 'second'}]), expected
+
 

@@ -1,18 +1,12 @@
 ;(function (exports, doc) {
   "use strict"
   var HTML_TAGS = [
-    "a","abbr","address","area","article","aside","audio","b","base","bdi",
-    "bdo","blockquote","body","br","canvas","caption","cite","code","col",
-    "colgroup","command","datalist","dd","del","details","dfn","dialog","div",
-    "dl","dt","em","embed","fieldset","figcaption","figure","footer","form",
-    "h1","h2","h3","h4","h5","h6","head","header","hgroup","hr","html","i",
-    "iframe","img","input","ins","kbd","keygen","label","legend","li","link",
-    "map","mark","menu","meta","meter","nav","noscript","object","ol",
-    "optgroup","option","output","p","param","pre","progress","q","rp","rt",
-    "ruby","s","samp","script","section","select","small","source","span",
-    "strong","style","sub","summary","sup","table","tbody","td","textarea",
-    "tfoot","th","thead","time","title","tr","track","u","ul","var","video",
-    "wbr"
+    "a","abbr","audio","b", "blockquote","body","br","canvas","code","div",
+    "fieldset","footer","form","h1","h2","h3","h4","h5","h6","header","hr","i",
+    "iframe","img","input","label","li","link","meta","nav","object","ol",
+    "optgroup","option","p","pre","script","section","select","span",
+    "strong","style","summary","table","tbody","td","textarea","tfoot","th",
+    "thead","title","tr","u","ul","video"
   ];
 
   var Tag = function (name, attrs, body) {
@@ -40,11 +34,11 @@
     }
   };
 
-  for (var tag in HTML_TAGS) {
+  HTML_TAGS.forEach(function (tag) {
     Tag.prototype[tag] = function (attrs, body) {
       return this.tag(tag, attrs, body);
     }
-  }
+  })
 
   Tag.prototype.tag = function (name, attrs, body) {
     this.el.appendChild(new Tag(name, attrs, body).toDom());
