@@ -20,7 +20,7 @@ xml = Bulder "foo", ->
 xml.toString() #=> "<foo><bar>one</bar><bar>two</bar></foo>"
 ```
 
-Using Builder as a templating langugage:
+Using Builder as a templating language:
 
 ```coffee
 renderTodos = (list)->
