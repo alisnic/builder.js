@@ -30,6 +30,6 @@ renderTodos = (list)->
 
   el.toString()
 
-renderTodos [{name: 'first'}, {name: 'second'}]
+renderTodos [{name: 'first'}, {name: 'second'}] #=> <ul><li>first</li><li>second</li></ul>
 ```
 
