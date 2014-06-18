@@ -1,11 +1,11 @@
 ;(function (exports, doc) {
   "use strict"
   var HTML_TAGS = [
-    "a","abbr","audio","b", "blockquote","body","br","canvas","code","div",
+    "a","audio","b","body","br","canvas","div",
     "fieldset","footer","form","h1","h2","h3","h4","h5","h6","header","hr","i",
     "iframe","img","input","label","li","link","meta","nav","object","ol",
-    "optgroup","option","p","pre","script","section","select","span",
-    "strong","style","summary","table","tbody","td","textarea","tfoot","th",
+    "optgroup","option","p","script","section","select","span",
+    "strong","style","summary","table","tbody","td","textarea","th",
     "thead","title","tr","u","ul","video"
   ];
 
