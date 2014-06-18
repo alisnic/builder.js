@@ -1,8 +1,10 @@
 builder.js
 =============
 
-Builder is a small library to build XML/HTML. It uses the DOM to do that, hence the size.
-It's inspired by the Nokogiri XML builder.
+Builder is a small library built to create DOM objects. This has several applications
+like programmatic templates or building XMLs.
+(you got it right, Builder is a pretty interface slapped on top of
+document.createElement)
 
 ```coffee
 Builder("foo", "true").toString()                #=> <foo>true</foo>
