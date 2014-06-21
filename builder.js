@@ -11,7 +11,6 @@
 
   var Tag = function (name, attrs, body) {
     this.el = doc.createElement(name);
-    this.depth = 0;
 
     var attributes = {};
 
