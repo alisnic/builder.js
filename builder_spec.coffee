@@ -1,6 +1,5 @@
-if typeof require isnt "undefined"
-  require "./bdd.js"
-  Builder = require("./builder.js").Builder
+require "./bdd.js"
+Builder = require("./builder.js").Builder
 
 describe "Builder", ->
   it "can create a simple tag", ->
