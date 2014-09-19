@@ -1,59 +1,41 @@
-;(function (exports, doc) {
-  "use strict"
-  var HTML_TAGS = [
-    "a","audio","b","body","br","canvas","div",
-    "fieldset","footer","form","h1","h2","h3","h4","h5","h6","header","hr","i",
-    "iframe","img","input","label","li","link","meta","nav","object","ol",
-    "optgroup","option","p","script","section","select","span",
-    "strong","style","summary","table","tbody","td","textarea","th",
-    "thead","title","tr","u","ul","video"
-  ];
+var XMLWriter = require('xml-writer');
 
-  var Tag = function (name, attrs, body) {
-    this.el = doc.createElement(name);
+var Tag = function (writer, name, attrs, body) {
+  this.writer = writer;
+  this.writer.startElement(name);
 
-    var attributes = {};
+  var attributes = {};
 
-    if (typeof attrs === "object") {
-      attributes = attrs;
-    } else {
-      if (typeof body === "undefined") {
-        body = attrs;
-      }
+  if (typeof attrs === "object") {
+    attributes = attrs;
+  } else {
+    if (typeof body === "undefined") {
+      body = attrs;
     }
-
-    for (var key in attributes) {
-      this.el.setAttribute(key, attributes[key]);
-    }
-
-    if (typeof body === "function") {
-      body.apply(this, [this]);
-    } else {
-      this.el.textContent = body || "";
-    }
-  };
-
-  HTML_TAGS.forEach(function (tag) {
-    Tag.prototype[tag] = function (attrs, body) {
-      return this.tag(tag, attrs, body);
-    }
-  })
-
-  Tag.prototype.tag = function (name, attrs, body) {
-    this.el.appendChild(new Tag(name, attrs, body).toDom());
-  };
-
-  Tag.prototype.toString = function () {
-    return this.el.outerHTML;
-  };
-
-  Tag.prototype.toDom = function () {
-    return this.el;
-  };
-
-  exports.Builder = function (name, attrs, body) {
-    return new Tag(name, attrs, body);
   }
 
-})(typeof exports === "undefined" ? window : exports,
-   typeof document === "undefined" ? require('jsdom').jsdom() : document);
+  for (var key in attributes) {
+    this.writer.writeAttribute(key, attributes[key]);
+  }
+
+  if (typeof body === "function") {
+    body.apply(this, [this]);
+  } else {
+    this.writer.text(body || "");
+  }
+
+  this.writer.endElement();
+};
+
+Tag.prototype.tag = function (name, attrs, body) {
+  new Tag(this.writer, name, attrs, body);
+};
+
+exports.Builder = function (name, attrs, body) {
+  var writer = new XMLWriter();
+  writer.startDocument('1.0', 'UTF-8');
+  new Tag(writer, name, attrs, body);
+  writer.endDocument();
+  return writer.toString();
+};
+
