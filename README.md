@@ -15,7 +15,7 @@ Builder("foo", {zoo: "moo"}, "hello").toString() #=> <foo zoo="moo">hello</foo>
 The body can be a function to nest other tags:
 
 ```coffee
-xml = Bulder "foo", ->
+xml = Builder "foo", ->
   @tag "bar", "one"
   @tag "bar", "two"
 
