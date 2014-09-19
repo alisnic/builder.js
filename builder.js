@@ -31,11 +31,27 @@ Tag.prototype.tag = function (name, attrs, body) {
   new Tag(this.writer, name, attrs, body);
 };
 
-exports.Builder = function (name, attrs, body) {
+
+var Builder = function (options) {
+  this.options = options;
+  if (typeof this.options.writeVersion == "undefined") {
+    this.options.writeVersion = true;
+  }
+};
+
+Builder.build = function (name, attrs, body) {
+  return new Builder({}).build(name, attrs, body);
+};
+
+Builder.prototype.build = function (name, attrs, body) {
   var writer = new XMLWriter();
-  writer.startDocument('1.0', 'UTF-8');
+  if (this.options.writeVersion) writer.startDocument('1.0', 'UTF-8');
+
   new Tag(writer, name, attrs, body);
-  writer.endDocument();
+
+  if (this.options.writeVersion) writer.endDocument();
   return writer.toString();
 };
+
+exports.Builder = Builder;
 
