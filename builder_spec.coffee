@@ -1,5 +1,5 @@
-require "./bdd.js"
 Builder = require("./builder.js").Builder
+assert  = require("assert")
 
 nsXml = (str)->
   "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n#{str}"
