@@ -31,7 +31,6 @@ Tag.prototype.tag = function (name, attrs, body) {
   new Tag(this.writer, name, attrs, body);
 };
 
-
 var Builder = function (options) {
   this.options = options;
   if (typeof this.options.writeVersion == "undefined") {
@@ -54,4 +53,7 @@ Builder.prototype.build = function (name, attrs, body) {
 };
 
 exports.Builder = Builder;
+if (typeof window !== "undefined") {
+  window.Builder = Builder;
+}
 
