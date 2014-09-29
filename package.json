@@ -10,6 +10,7 @@
     "mocha":      "*"
   },
   "scripts": {
+    "dev": "browserify builder.js > builder_dev.js",
     "min":  "browserify builder.js | uglifyjs > builder.min.js",
     "test": "mocha builder_spec.coffee --compilers coffee:coffee-script/register"
   },

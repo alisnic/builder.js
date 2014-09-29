@@ -35,7 +35,7 @@ Tag.prototype.tag = function (name, attrs, body) {
 var Builder = function (options) {
   this.options = options;
   if (typeof this.options.writeVersion == "undefined") {
-    this.options.writeVersion = true;
+    this.options.writeVersion = false;
   }
 };
 
